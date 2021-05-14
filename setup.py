@@ -11,6 +11,8 @@ setup(
     description='Set of algorithms for image processing using fuzzy operators',
     include_package_data=True,
     install_requires=[
-        "discrete_fuzzy_operators"
+        "discrete_fuzzy_operators",
+        "opencv-python",
+        "numpy"
     ]
 )
