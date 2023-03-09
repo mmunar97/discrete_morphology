@@ -1,7 +1,7 @@
 import numpy
 from typing import Tuple
 
-from discrete_fuzzy_morphology.base.exceptions.structuring_element_out_bounds import StructuringElementOutOfBounds
+from discrete_morphology.base.exceptions.structuring_element_out_bounds import StructuringElementOutOfBounds
 
 
 class StructuringElement:

@@ -2,18 +2,18 @@ import numpy
 
 from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy_implication_operator import DiscreteFuzzyImplicationOperator
 from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy_aggregation_operator import DiscreteFuzzyAggregationBinaryOperator
-from discrete_fuzzy_morphology.base.structuring_element import StructuringElement
-from discrete_fuzzy_morphology.operators.erosion_dilation.fuzzy_dilation import fuzzy_image_dilation
-from discrete_fuzzy_morphology.operators.erosion_dilation.fuzzy_erosion import fuzzy_image_erosion
+from discrete_morphology.base.structuring_element import StructuringElement
+from discrete_morphology.operators.erosion_dilation.discrete_dilation import discrete_dilation
+from discrete_morphology.operators.erosion_dilation.discrete_erosion import discrete_erosion
 
 
-def fuzzy_image_opening(image: numpy.ndarray,
-                        structuring_element: StructuringElement,
-                        iterations: int,
-                        erosion_implication: DiscreteFuzzyImplicationOperator,
-                        dilation_tnorm: DiscreteFuzzyAggregationBinaryOperator):
+def discrete_closing(image: numpy.ndarray,
+                     structuring_element: StructuringElement,
+                     iterations: int,
+                     erosion_implication: DiscreteFuzzyImplicationOperator,
+                     dilation_tnorm: DiscreteFuzzyAggregationBinaryOperator):
     """
-    Applies the fuzzy opening to a grayscale image.
+    Applies the discrete closing to a grayscale image.
 
     Args:
         image: A numpy array, representing the image to be opened.
@@ -35,14 +35,16 @@ def fuzzy_image_opening(image: numpy.ndarray,
     """
     result = image.copy()
     for _ in range(0, iterations):
-        erosion = fuzzy_image_erosion(image=result,
-                                      structuring_element=structuring_element,
-                                      iterations=1,
-                                      implication=erosion_implication)
-        dilation = fuzzy_image_dilation(image=erosion,
-                                        structuring_element=structuring_element.get_reflected_structuring_element(),
-                                        iterations=1,
-                                        t_norm=dilation_tnorm)
+        dilation = discrete_dilation(image=result,
+                                     structuring_element=structuring_element,
+                                     iterations=1,
+                                     t_norm=dilation_tnorm)
+        erosion = discrete_erosion(image=dilation,
+                                   structuring_element=structuring_element.get_reflected_structuring_element(),
+                                   iterations=1,
+                                   implication=erosion_implication)
 
-        result = dilation
+        result = erosion
     return result
+
+

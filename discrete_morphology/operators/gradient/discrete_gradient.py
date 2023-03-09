@@ -4,19 +4,19 @@ from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy
     DiscreteFuzzyImplicationOperator
 from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy_aggregation_operator import \
     DiscreteFuzzyAggregationBinaryOperator
-from discrete_fuzzy_morphology.base.structuring_element import StructuringElement
-from discrete_fuzzy_morphology.operators.erosion_dilation.fuzzy_dilation import fuzzy_image_dilation
-from discrete_fuzzy_morphology.operators.erosion_dilation.fuzzy_erosion import fuzzy_image_erosion
+from discrete_morphology.base.structuring_element import StructuringElement
+from discrete_morphology.operators.erosion_dilation.discrete_dilation import discrete_dilation
+from discrete_morphology.operators.erosion_dilation.discrete_erosion import discrete_erosion
 
 
-def fuzzy_gradient(image: numpy.ndarray,
-                   structuring_element: StructuringElement,
-                   iterations_erosion: int,
-                   iterations_dilation: int,
-                   erosion_implication: DiscreteFuzzyImplicationOperator,
-                   dilation_tnorm: DiscreteFuzzyAggregationBinaryOperator):
+def discrete_gradient(image: numpy.ndarray,
+                      structuring_element: StructuringElement,
+                      iterations_erosion: int,
+                      iterations_dilation: int,
+                      erosion_implication: DiscreteFuzzyImplicationOperator,
+                      dilation_tnorm: DiscreteFuzzyAggregationBinaryOperator):
     """
-    Computes the fuzzy gradient of a grayscale image.
+    Computes the discrete gradient of a grayscale image.
 
     Args:
         image: A numpy array, representing the image to be opened.
@@ -37,12 +37,12 @@ def fuzzy_gradient(image: numpy.ndarray,
     Returns:
         An image with the same dimension as the input image, representing the gradient of the image.
     """
-    dilation = fuzzy_image_dilation(image=image,
-                                    structuring_element=structuring_element,
-                                    iterations=iterations_dilation,
-                                    t_norm=dilation_tnorm)
-    erosion = fuzzy_image_erosion(image=image,
-                                  structuring_element=structuring_element,
-                                  iterations=iterations_erosion,
-                                  implication=erosion_implication)
+    dilation = discrete_dilation(image=image,
+                                 structuring_element=structuring_element,
+                                 iterations=iterations_dilation,
+                                 t_norm=dilation_tnorm)
+    erosion = discrete_erosion(image=image,
+                               structuring_element=structuring_element,
+                               iterations=iterations_erosion,
+                               implication=erosion_implication)
     return dilation-erosion

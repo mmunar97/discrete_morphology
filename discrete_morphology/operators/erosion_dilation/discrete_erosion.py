@@ -1,17 +1,18 @@
+from typing import Tuple
+
 import numpy
-import warnings
 
 from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy_implication_operator import \
     DiscreteFuzzyImplicationOperator
-from discrete_fuzzy_morphology.base.structuring_element import StructuringElement
+from discrete_morphology.base.structuring_element import StructuringElement
 
 
-def fuzzy_image_erosion(image: numpy.ndarray,
-                        structuring_element: StructuringElement,
-                        iterations: int,
-                        implication: DiscreteFuzzyImplicationOperator) -> numpy.ndarray:
+def discrete_erosion(image: numpy.ndarray,
+                     structuring_element: StructuringElement,
+                     iterations: int,
+                     implication: DiscreteFuzzyImplicationOperator) -> numpy.ndarray:
     """
-    Applies the fuzzy erosion to a grayscale image.
+    Applies the discrete erosion to a grayscale image.
 
     Args:
         image: A numpy array, representing the image to be eroded.
@@ -28,9 +29,6 @@ def fuzzy_image_erosion(image: numpy.ndarray,
     Returns:
         An image with the same dimension as the input image, representing the eroded image.
     """
-    if not implication.is_implication():
-        warnings.warn("The selected operator is not a fuzzy implication function. Results may not be correct.")
-
     img_rows, img_columns = image.shape
     se_rows, se_columns = structuring_element.dimension
 
@@ -59,4 +57,3 @@ def fuzzy_image_erosion(image: numpy.ndarray,
         iteration = erosion_result.copy()
 
     return erosion_result
-

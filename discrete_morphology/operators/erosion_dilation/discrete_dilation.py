@@ -3,15 +3,15 @@ import numpy
 from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy_aggregation_operator import \
     DiscreteFuzzyAggregationBinaryOperator
 
-from discrete_fuzzy_morphology.base.structuring_element import StructuringElement
+from discrete_morphology.base.structuring_element import StructuringElement
 
 
-def fuzzy_image_dilation(image: numpy.ndarray,
-                         structuring_element: StructuringElement,
-                         iterations: int,
-                         t_norm: DiscreteFuzzyAggregationBinaryOperator) -> numpy.ndarray:
+def discrete_dilation(image: numpy.ndarray,
+                      structuring_element: StructuringElement,
+                      iterations: int,
+                      t_norm: DiscreteFuzzyAggregationBinaryOperator) -> numpy.ndarray:
     """
-    Applies the fuzzy dilation to a grayscale image.
+    Applies the discrete dilation to a grayscale image.
 
     Args:
         image: A numpy array, representing the image to be dilated.
