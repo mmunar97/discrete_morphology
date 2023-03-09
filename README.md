@@ -1,6 +1,6 @@
 # Discrete Morphology
 
-A library written in pure Python for computing morphological operators using discrete connectives. Although mathematical morphology operators are usually defined on the interval $[0,1]$, grey-level images take discrete values when stored in a computer, usually on the finite chain $L_{255}=$L_{0,1,1,\dots, 255}$. To this end, the following reference establishes a framework in which operators equivalent to the $[0,1]$ operators but for the finite chain $L_n$ are proposed:
+A library written in pure Python for computing morphological operators using discrete connectives. Although mathematical morphology operators are usually defined on the interval $[0,1]$, grey-level images take discrete values when stored in a computer, usually on the finite chain $L_{255}=\{0,1,1,\dots, 255\}$. To this end, the following reference establishes a framework in which operators equivalent to the $[0,1]$ operators but for the finite chain $L_n$ are proposed:
 ```
 González-Hidalgo M., Massanet S.
 A fuzzy mathematical morphology based on discrete t-norms: fundamentals and applications to image processing.
