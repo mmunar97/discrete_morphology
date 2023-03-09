@@ -1,7 +1,8 @@
 import cv2
 import numpy
-import discrete_fuzzy_operators.example_operators.implications as implications
-import discrete_fuzzy_operators.example_operators.tnorms as tnorms
+
+from discrete_fuzzy_operators.builtin_operators.discrete.tnorms import TnormExamples
+from discrete_fuzzy_operators.builtin_operators.discrete.implications import DiscreteImplicationExamples
 
 from discrete_morphology.base.structuring_element import StructuringElement
 from discrete_morphology.operators.erosion_dilation.discrete_erosion import discrete_erosion
@@ -21,16 +22,16 @@ if __name__ == "__main__":
     se = StructuringElement(structuring_element_matrix, center)
 
     erosion = discrete_erosion(image=img, structuring_element=se, iterations=1,
-                               implication=implications.get_implication(implications.Implication.LUKASIEWICZ, n=255))
+                               implication=DiscreteImplicationExamples.get_discrete_implication(DiscreteImplicationExamples.LUKASIEWICZ, n=255))
     dilation = discrete_dilation(image=img, structuring_element=se, iterations=1,
-                                 t_norm=tnorms.get_tnorm(tnorms.Tnorm.LUKASIEWICZ, n=255))
+                                 conjunction=TnormExamples.get_tnorm(TnormExamples.LUKASIEWICZ, n=255))
     opening = discrete_opening(image=img, structuring_element=se, iterations=1,
-                               erosion_implication=implications.get_implication(implications.Implication.LUKASIEWICZ, n=255),
-                               dilation_tnorm=tnorms.get_tnorm(tnorms.Tnorm.LUKASIEWICZ, n=255))
+                               erosion_implication=DiscreteImplicationExamples.get_discrete_implication(DiscreteImplicationExamples.LUKASIEWICZ, n=255),
+                               dilation_tnorm=TnormExamples.get_tnorm(TnormExamples.LUKASIEWICZ, n=255))
     closing = discrete_closing(image=img, structuring_element=se, iterations=1,
-                               erosion_implication=implications.get_implication(implications.Implication.LUKASIEWICZ, n=255),
-                               dilation_tnorm=tnorms.get_tnorm(tnorms.Tnorm.LUKASIEWICZ, n=255))
+                               erosion_implication=DiscreteImplicationExamples.get_discrete_implication(DiscreteImplicationExamples.LUKASIEWICZ, n=255),
+                               dilation_conjunction=TnormExamples.get_tnorm(TnormExamples.LUKASIEWICZ, n=255))
     gradient = discrete_gradient(image=img, structuring_element=se, iterations_erosion=1, iterations_dilation=1,
-                                 erosion_implication=implications.get_implication(implications.Implication.LUKASIEWICZ, n=255),
-                                 dilation_tnorm=tnorms.get_tnorm(tnorms.Tnorm.LUKASIEWICZ, n=255))
+                                 erosion_implication=DiscreteImplicationExamples.get_discrete_implication(DiscreteImplicationExamples.LUKASIEWICZ, n=255),
+                                 dilation_conjunction=TnormExamples.get_tnorm(TnormExamples.LUKASIEWICZ, n=255))
 

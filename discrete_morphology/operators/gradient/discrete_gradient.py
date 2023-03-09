@@ -1,9 +1,8 @@
 import numpy
 
-from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy_implication_operator import \
-    DiscreteFuzzyImplicationOperator
-from discrete_fuzzy_operators.base.operators.binary_operators.suboperators.fuzzy_aggregation_operator import \
-    DiscreteFuzzyAggregationBinaryOperator
+from discrete_fuzzy_operators.base.operators.binary_operators.discrete.suboperators.fuzzy_discrete_implication_operator import DiscreteImplicationOperator
+from discrete_fuzzy_operators.base.operators.binary_operators.discrete.suboperators.fuzzy_discrete_aggregation_suboperators.conjunction import Conjunction
+
 from discrete_morphology.base.structuring_element import StructuringElement
 from discrete_morphology.operators.erosion_dilation.discrete_dilation import discrete_dilation
 from discrete_morphology.operators.erosion_dilation.discrete_erosion import discrete_erosion
@@ -13,8 +12,8 @@ def discrete_gradient(image: numpy.ndarray,
                       structuring_element: StructuringElement,
                       iterations_erosion: int,
                       iterations_dilation: int,
-                      erosion_implication: DiscreteFuzzyImplicationOperator,
-                      dilation_tnorm: DiscreteFuzzyAggregationBinaryOperator):
+                      erosion_implication: DiscreteImplicationOperator,
+                      dilation_conjunction: Conjunction):
     """
     Computes the discrete gradient of a grayscale image.
 
@@ -24,10 +23,9 @@ def discrete_gradient(image: numpy.ndarray,
                              structuring element to be used.
         iterations_erosion: An integer, representing the number of iterations of the erosion.
         iterations_dilation: An integer, representing the number of iterations of the dilation.
-        erosion_implication: A DiscreteFuzzyImplicationOperator object, representing the implication to be used in the
+        erosion_implication: A DiscreteImplicationOperator object, representing the implication to be used in the
                              erosion.
-        dilation_tnorm: A DiscreteFuzzyAggregationBinaryOperator object, representing the t-norm to be used in the
-                        dilation.
+        dilation_conjunction: A Conjunction object, representing the conjunction to be used in the dilation.
 
     References:
         González-Hidalgo, M., & Massanet, S. (2014).
@@ -40,7 +38,7 @@ def discrete_gradient(image: numpy.ndarray,
     dilation = discrete_dilation(image=image,
                                  structuring_element=structuring_element,
                                  iterations=iterations_dilation,
-                                 t_norm=dilation_tnorm)
+                                 conjunction=dilation_conjunction)
     erosion = discrete_erosion(image=image,
                                structuring_element=structuring_element,
                                iterations=iterations_erosion,
