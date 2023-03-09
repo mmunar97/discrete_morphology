@@ -7,7 +7,7 @@ A fuzzy mathematical morphology based on discrete t-norms: fundamentals and appl
 Soft Computing, 18 (11), 2014, 2297–2311. https://doi.org/10.1007/s00500-013-1204-6
 ``` 
 
-Since the methods depend on connectives defined on the finite chain L_n, in [DiscreteFuzzyOperators](https://github.com/mmunar97/discrete-fuzzy-operators) there is a library devoted to the implementation of these operators, as well as a study of their properties. For more information on these discrete operators, see:
+Since the methods depend on connectives defined on the finite chain $L_n$, in [DiscreteFuzzyOperators](https://github.com/mmunar97/discrete-fuzzy-operators) there is a library devoted to the implementation of these operators, as well as a study of their properties. For more information on these discrete operators, see:
 ```
 Munar M., Massanet S., Ruiz-Aguilera D.
 A review on logical connectives defined on finite chains.
