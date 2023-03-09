@@ -13,3 +13,10 @@ Munar M., Massanet S., Ruiz-Aguilera D.
 A review on logical connectives defined on finite chains.
 Fuzzy Sets and Systems, 2023. https://doi.org/10.1016/j.fss.2023.01.004.
 ``` 
+
+## Installation
+
+The package is updated and uploaded to the PyPi repository, and can be easily installed with the following command:
+```
+pip install discrete-morphology
+``` 
